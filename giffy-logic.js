@@ -1,4 +1,26 @@
+//==================================================
+//added onscroll to top button:
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("topBtn").style.display = "block";
+  } else {
+    document.getElementById("topBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+//==================================================
+
 var topics = ["Monday", "Tuesday", "Thursday", "Wednesday", "Friday", "Sunday", "Saturday"];
+
+var myFavs = [];
 
 function displayGifInfo() {
 
@@ -15,7 +37,6 @@ function displayGifInfo() {
     var results = response.data;
 
     for (var i = 0; i < results.length; i++) {
-
       var gifCard = $("<div class='card'>");
       var imageURL = results[i].images.fixed_width_still.url;
       var image = $("<img>").attr("src", imageURL);
@@ -26,10 +47,12 @@ function displayGifInfo() {
       var cardBody = $("<div class='card-body'>");
       gifCard.append(cardBody);
       var rated = results[i].rating;
+      var faHeart = $("<span class='far fa-heart'>");
       var pMuted = $("<p>").text("#" + gif + " | Rated: " + rated);
       pMuted.addClass("card-text");
       pMuted.addClass("text-muted");
       pMuted.attr("font-size", "small");
+      pMuted.append(faHeart);
       cardBody.append(pMuted);
       $(".card-columns").prepend(gifCard);
     }
@@ -82,3 +105,12 @@ $('body').on('click', '.gif', function() {
     $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
   }
 });
+
+$('body').on('click', '.fa-heart', function() {
+  if($(this).hasClass('fas')){  
+    $(this).removeClass('fas');
+    $(this).addClass('far');
+  } else {
+    $(this).removeClass('far')
+    $(this).addClass('fas')
+  }});

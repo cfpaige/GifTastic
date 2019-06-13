@@ -19,3 +19,41 @@
 .gif-btn {
     margin: 0 5px;
 }
+
+#topBtn {
+    display: none;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 99;
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 1.5em;
+    border: none;
+    outline: none;
+    background-color: red;
+    opacity: 0.6;
+    color: white;
+    cursor: pointer;
+    padding-top: 0.25em;
+    padding-left: 0.25em; 
+    border-radius: 10px;
+  }
+  
+  #topBtn:hover {
+    background-color: #555;
+  }
+
+  .card-text {
+      position: relative;
+  }
+
+  .fa-heart {
+      position: absolute;
+      right: 10px;
+      bottom: 0;
+  }
+
+  .fas {
+      color: red;
+  }
