@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-/* body {
-    background-image: url('background-waves.png')
-} */
-
 #jumbotron-wrapper {
     max-width: 960px;
     margin: 0 auto;
@@ -54,6 +50,10 @@
       bottom: 0;
   }
 
-  .fas {
+  .fa-heart:hover {
+      cursor: pointer;
+  }
+
+  .fas.fa-heart{
       color: red;
   }
