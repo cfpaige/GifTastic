@@ -1,4 +1,21 @@
-var gifs = ["Monday", "Tuesday", "Thursday", "Wednesday", "Friday", "Sunday", "Saturday"];
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("topBtn").style.display = "block";
+  } else {
+    document.getElementById("topBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+
+var topics = ["Monday", "Tuesday", "Thursday", "Wednesday", "Friday", "Sunday", "Saturday"];
 
 function displayGifInfo() {
 
@@ -14,7 +31,7 @@ function displayGifInfo() {
 
             var results = response.data;
 
-            // for (var i = 0; i < results.length; i++)
+            for (var i = 0; i < results.length; i++) {
                 
                 var gifCard = $("<div class='card'>");
                 var imageURL = results[i].images.fixed_width_still.url;
@@ -24,41 +41,36 @@ function displayGifInfo() {
                 var cardBody = $("<div class='card-body'>");
                 gifCard.append(cardBody);
                 var rated = results[i].rating;
-                var pMuted = $("<p>").text("Rated " + rated);
+                var pMuted = $("<p>").text("#" + gif + " | Rated: " + rated);
                 pMuted.addClass("card-text");
                 pMuted.addClass("text-muted");
-                pMuted.attr("size", "small");
+                pMuted.attr("font-size", "small");
                 cardBody.append(pMuted);
-                $("#card-columns").prepend(gifCard);
-        })};
-
-
+                $(".card-columns").prepend(gifCard);
+            }})};
+        
     function renderButtons() {
 
         $("#buttons-view").empty();
 
-        for (var i = 0; i < gifs.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
 
             var a = $("<button>");
             a.addClass("btn btn-outline-secondary");
             a.addClass("gif-btn");
             a.attr("type", "button");
-            a.attr("data-name", gifs[i]);
-            a.text(gifs[i]);
+            a.attr("data-name", topics[i]);
+            a.text(topics[i]);
             $("#buttons-view").append(a);
-        }
-    }
+        }};
 
     $("#gif-search-btn").on("click", function (event) {
         event.preventDefault();
-
         var gif = $("#add-topic").val().trim();
-
-        gifs.push(gif);
-
+        topics.push(gif);
         renderButtons();
     });
 
     $(document).on("click", ".gif-btn", displayGifInfo);
-
+    
     renderButtons();
