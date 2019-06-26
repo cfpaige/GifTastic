@@ -1,2 +1,3 @@
-# GifTastic
-wk3 homework
+## GifTastic ##
+
+Homework assignment using Giphy API, ajax calls, and JavaScript/jQuery to dynamically create HTML elements.
